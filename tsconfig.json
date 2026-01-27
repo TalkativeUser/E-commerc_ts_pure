@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ESNext",
+    // the next line for convert every file in src dirctory (only in src direction) like:src/main.ts
+    "rootDir": "src",
+    // the output or result converted
+    "outDir": "dist",
+
+    "lib": ["DOM", "ESNext"],
+    "strict": true,
+
+    "sourceMap": true,
+    "skipLibCheck": true
+  },
+  // the include property for convert every nsted file inside src like : src/scripts/products.ts
+  "include": [
+    "src/**/*"
+  ]
+}
