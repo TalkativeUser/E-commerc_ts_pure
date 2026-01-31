@@ -10,26 +10,90 @@ const rightArrow = document.querySelector('.rightArrow');
 let currentIndex = 0;
 const totalSlides = slides.length;
 const widthOfCarousel = carousel === null || carousel === void 0 ? void 0 : carousel.offsetWidth;
-const slidesPerView = 2; // Matches your w-1/2 class
+const slidesPerView = 2;
 const singleSlideWidth = widthOfCarousel && widthOfCarousel / 2;
+function snapToLeft() {
+    if (innerCarousel && singleSlideWidth) {
+        if (currentIndex > 0) {
+            currentIndex--;
+            innerCarousel.style.transform = `translateX(-${singleSlideWidth * currentIndex}px)`;
+            innerCarousel.style.transition = "transform 0.5s ease-in-out";
+        }
+    }
+}
+function snapToRight() {
+    if (innerCarousel && singleSlideWidth) {
+        if (currentIndex < totalSlides - 2) {
+            currentIndex++;
+            innerCarousel.style.transform = `translateX(-${singleSlideWidth * currentIndex}px)`;
+            innerCarousel.style.transition = "transform 0.5s ease-in-out";
+        }
+    }
+}
 if (leftArrow && rightArrow) {
-    leftArrow.addEventListener("click", (e) => {
-        if (innerCarousel && singleSlideWidth) {
+    leftArrow.addEventListener("click", snapToLeft);
+    rightArrow.addEventListener("click", snapToRight);
+}
+let isDragging = false;
+let startMouseX = 0;
+let startInnerCarouselX = 0;
+let mouseMoveDistance = 0;
+carousel === null || carousel === void 0 ? void 0 : carousel.addEventListener("mousedown", (e) => {
+    e.preventDefault();
+    if (!innerCarousel)
+        return;
+    isDragging = true;
+    // مكان الماوس وقت البداية
+    startMouseX = e.pageX;
+    // مكان الكاروسيل وقت البداية
+    // const matrix = new DOMMatrixReadOnly(
+    //   window.getComputedStyle(innerCarousel).transform
+    // );
+    startInnerCarouselX = -singleSlideWidth * currentIndex;
+    innerCarousel.style.transition = "none";
+});
+window.addEventListener("mousemove", (e) => {
+    if (!isDragging || !innerCarousel)
+        return;
+    const currentMouseX = e.pageX;
+    mouseMoveDistance = currentMouseX - startMouseX;
+    innerCarousel.style.transform = `translateX(${startInnerCarouselX + mouseMoveDistance}px)`;
+});
+window.addEventListener("mouseup", () => {
+    if (!innerCarousel)
+        return;
+    isDragging = false;
+    if (singleSlideWidth) {
+        const threshold = singleSlideWidth / 2;
+        innerCarousel.style.transition = "transform 0.4s ease";
+        if (Math.abs(mouseMoveDistance) < threshold) {
+            // رجوع لنفس السلايد
+            innerCarousel.style.transform =
+                `translateX(-${singleSlideWidth * currentIndex}px)`;
+        }
+        else if (mouseMoveDistance > 0) {
+            // سحب يمين
             if (currentIndex > 0) {
                 currentIndex--;
-                innerCarousel.style.transform = `translateX(-${singleSlideWidth * currentIndex}px)`;
-                innerCarousel.style.transition = "transform 0.5s ease-in-out";
             }
+            innerCarousel.style.transform =
+                `translateX(-${singleSlideWidth * currentIndex}px)`;
         }
-    });
-    rightArrow.addEventListener("click", (e) => {
-        if (innerCarousel && singleSlideWidth) {
-            if (currentIndex < totalSlides - 2) {
+        else {
+            // سحب شمال
+            if (currentIndex < totalSlides - slidesPerView) {
                 currentIndex++;
-                innerCarousel.style.transform = `translateX(-${singleSlideWidth * currentIndex}px)`;
-                innerCarousel.style.transition = "transform 0.5s ease-in-out";
             }
+            innerCarousel.style.transform =
+                `translateX(-${singleSlideWidth * currentIndex}px)`;
         }
-    });
-}
+    }
+    mouseMoveDistance = 0;
+});
+window.addEventListener("mouseleave", () => {
+    isDragging = false;
+});
+window.addEventListener("blur", () => {
+    isDragging = false;
+});
 //# sourceMappingURL=main.js.map
