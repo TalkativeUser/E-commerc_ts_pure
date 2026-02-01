@@ -6,6 +6,7 @@ const innerCarousel = document.querySelector(".innerCarousel");
 const slides = document.querySelectorAll('.slide');
 const leftArrow = document.querySelector('.leftArrow');
 const rightArrow = document.querySelector('.rightArrow');
+const dots = document.querySelectorAll('.dot');
 // State tracking
 let currentIndex = 0;
 const totalSlides = slides.length;
@@ -38,6 +39,8 @@ let isDragging = false;
 let startMouseX = 0;
 let startInnerCarouselX = 0;
 let mouseMoveDistance = 0;
+const maxIndex = totalSlides - slidesPerView;
+const dotsCount = maxIndex + 1;
 carousel === null || carousel === void 0 ? void 0 : carousel.addEventListener("mousedown", (e) => {
     e.preventDefault();
     if (!innerCarousel)
@@ -96,4 +99,20 @@ window.addEventListener("mouseleave", () => {
 window.addEventListener("blur", () => {
     isDragging = false;
 });
+dots.forEach((dot, idx) => {
+    if (idx > maxIndex) {
+        dot.remove();
+        return;
+    }
+    dot.addEventListener("click", () => {
+        if (!innerCarousel || !singleSlideWidth)
+            return;
+        currentIndex = idx;
+        innerCarousel.style.transform =
+            `translateX(-${singleSlideWidth * currentIndex}px)`;
+    });
+});
+function snapWithDots(idx) {
+    console.log('idxx =>> ', idx);
+}
 //# sourceMappingURL=main.js.map

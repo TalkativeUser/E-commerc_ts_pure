@@ -7,6 +7,7 @@ const innerCarousel = document.querySelector(".innerCarousel") as HTMLDivElement
 const slides = document.querySelectorAll('.slide') as NodeListOf<HTMLDivElement>;
 const leftArrow = document.querySelector('.leftArrow') as HTMLDivElement | null;
 const rightArrow = document.querySelector('.rightArrow') as HTMLDivElement | null;
+const dots=document.querySelectorAll('.dot') as NodeListOf<HTMLDivElement> ;
 
 // State tracking
 let currentIndex: number = 0;
@@ -55,6 +56,9 @@ let isDragging = false;
 let startMouseX = 0;
 let startInnerCarouselX = 0;
 let mouseMoveDistance: number = 0
+const maxIndex = totalSlides - slidesPerView
+const dotsCount = maxIndex + 1
+
 
 carousel?.addEventListener("mousedown", (e: MouseEvent) => {
   e.preventDefault();
@@ -133,3 +137,29 @@ window.addEventListener("mouseleave", () => {
 window.addEventListener("blur", () => {
   isDragging = false;
 });
+
+dots.forEach((dot, idx) => {
+  if (idx > maxIndex) {
+    dot.remove(); 
+    return;
+  }
+
+  dot.addEventListener("click", () => {
+    if (!innerCarousel || !singleSlideWidth) return;
+
+    currentIndex = idx;
+    innerCarousel.style.transform =
+      `translateX(-${singleSlideWidth * currentIndex}px)`;
+  });
+});
+
+ 
+
+
+
+ function snapWithDots(idx:number){
+
+  console.log('idxx =>> ' , idx);
+  
+
+ }
