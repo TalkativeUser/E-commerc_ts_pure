@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>e-commerce</title>
+  <link href="./src/output.css" rel="stylesheet">
+</head>
+<!-- npx tailwindcss -i ./src/index.css -o ./src/output.css --watch -->
+
+<!-- issues :
+  1- ! symbol 
+  2- tailwind.config.js 
+  3- skip or avoid the pe of parent when happen overflow but resolved with container section
+-->
+
+<body>
+  <!-- Home page -->
+  <section class="home flex justify-center bg-[#EFF1F5] min-h-screen ">
+    <div class="container  ">
+
+      <nav class="navbar mt-3 flex flex-col sm:flex-row sm:justify-between ">
+
+        <div class="logo flex justify-around gap-12 items-center ">
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="size-6 sm:hidden ">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg> -->
+          <img src="./public/logo.svg" class="w-20 h-20" alt="">
+
+        </div>
+
+        <div class="actions py-2 px-3 flex justify-center items-center gap-2 sm:gap-4 ">
+          <div class="search relative ">
+            <input id="search" type="text" class="border w-40 sm:w-52 bg-white rounded-md 
+             focus:outline-none
+            " style="padding-left: 30px; padding-block: 5px; ">
+            <svg xmlns="http://www.w3.org/2000/svg" class="absolute w-6 h-6 top-1/2 left-4 -translate-1/2 " fill="none"
+              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 21l-4.35-4.35m0 0a7 7 0 1 0-9.9-9.9 7 7 0 0 0 9.9 9.9z" />
+            </svg>
+          </div>
+          <button class="cart border rounded-md " style="padding-inline: 20px; padding-block: 5px; ">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+            </svg>
+
+          </button>
+          <button class="favorits border rounded-md " style="padding-inline: 20px; padding-block: 5px; ">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+            </svg>
+
+          </button>
+          <button class="border rounded-md " style="padding-inline: 20px; padding-block: 5px; ">
+            sign in
+          </button>
+        </div>
+      </nav>
+
+      <div class="navigationCategories hidden sm:flex mt-6  justify-center font-[600] text-[#797474] ">
+        <div
+          class="py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl  group relative flex  sm:justify-center items-center ">
+          <span class="mr-1!">categories</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="size-4 group-hover:rotate-180 transition-all duration-300 ease-out ">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+
+
+          <div class="absolute z-10 left-8 p-5! top-full mt-2 rounded-md overflow-hidden bg-[#EFF1F5]
+          opacity-0 scale-y-0 translate-y-2
+          transition-all duration-300 ease-out
+          group-hover:opacity-100 group-hover:scale-y-100 group-hover:translate-y-0
+            shadow-[0_15px_35px_rgba(0,0,0,0.25)]
+             grid grid-cols-[max-content_max-content] origin-top
+ 
+            ">
+
+            <div class="bg-white p-2! m-2!"> subCategory </div>
+            <div class="bg-white p-2! m-2!"> subCategory </div>
+            <div class="bg-white p-2! m-2!"> subCategory </div>
+            <div class="bg-white p-2! m-2!"> subCategory </div>
+            <div class="bg-white p-2! m-2!"> subCategory </div>
+          </div>
+
+        </div>
+        <div class=" py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl  "> categories </div>
+        <div class=" py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl  "> categories </div>
+        <div class=" py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl  "> categories </div>
+        <div class=" py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl   "> categories </div>
+
+      </div>
+
+      <aside
+        class="bg-[#EFF1F5] sm:hidden py-3! px-2!  fixed top-0 bottom-0 left-0 min-w-56 z-20 shadow-[0_15px_35px_rgba(0,0,0,0.25)] -translate-x-full has-[:checked]:translate-x-0 transition-transform duration-300 ease-in-out ">
+
+        <label>
+
+          <div
+            class="bg-white absolute top-1/2 -end-0.5 group translate-x-1/2 -translate-y-1/2 border border-green-300 has-[:checked]:border-red-300 cursor-pointer h-8 w-8 flex justify-center items-center rounded-full ">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6 transition-colors text-green-500 group-has-[:checked]:text-red-300  group-has-[:checked]:rotate-180  ">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+            </svg>
+            <input type="checkbox" id="toggleSidebar" class="hidden" />
+          </div>
+
+
+
+        </label>
+
+
+
+        <h3 class="text-xl font-[600]  text-[#797474] "> Categories </h3>
+        <ul class="categories text-md font-[400] text-[#797474] mt-2! ">
+          <!-- border border-[#c6bcbcbd]  -->
+          <li class="py-1! hover:bg-[#776d6d17] px-2! rounded-md group ">
+            <div class=" flex justify-between items-center">
+              <span>Category</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-4 group-hover:rotate-180 transition-all duration-300 ease-out ">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+
+            <ul class="ps-2! max-h-0 overflow-hidden group-hover:max-h-96 transition-all duration-300 ease-in-out ">
+              <li class="py-1!">subCategory</li>
+              <li class="py-1!">subCategory</li>
+              <li class="py-1!">subCategory</li>
+              <li class="py-1!">subCategory</li>
+              <li class="py-1!">subCategory</li>
+
+            </ul>
+
+          </li>
+          <li class="py-1! hover:bg-[#776d6d17] px-2! rounded-md group ">
+            <div class=" flex justify-between items-center">
+              <span>Category</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-4 group-hover:rotate-180 transition-all duration-300 ease-out ">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+
+            <ul class="ps-2! max-h-0 overflow-hidden group-hover:max-h-96 transition-all duration-300 ease-in-out ">
+              <li class="py-1!">subCategory</li>
+              <li class="py-1!">subCategory</li>
+              <li class="py-1!">subCategory</li>
+              <li class="py-1!">subCategory</li>
+              <li class="py-1!">subCategory</li>
+
+            </ul>
+
+          </li>
+          <li class="py-1! hover:bg-[#776d6d17] px-2! rounded-md group ">
+            <div class=" flex justify-between items-center">
+              <span>Category</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-4 group-hover:rotate-180 transition-all duration-300 ease-out ">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+
+            <ul class="ps-2! max-h-0 overflow-hidden group-hover:max-h-96 transition-all duration-300 ease-in-out ">
+              <li class="py-1!">subCategory</li>
+              <li class="py-1!">subCategory</li>
+              <li class="py-1!">subCategory</li>
+              <li class="py-1!">subCategory</li>
+              <li class="py-1!">subCategory</li>
+
+            </ul>
+
+          </li>
+
+        </ul>
+      </aside>
+
+
+      <div class="heroSection">
+        <h2 class="uppercase mb-4! mt-14! text-center font-bold text-2xl text-[#484E68]  ">new released</h2>
+        <div class=" px-10 sm:px-16 ">
+          <div class="relative ">
+            <div class="carousel overflow-hidden ">
+
+              <!-- -translate-x-[25%]  -->
+              <div class=" flex innerCarousel translate-0 select-none cursor-grab active:cursor-grabbing  ">
+
+                <div class="slide p-3! w-1/2 aspect-video  shrink-0  ">
+                  <img src="./public/products//alexander-andrews-BX4Q0gojWAs-unsplash.jpg"
+                    class=" select-none pointer-events-none w-full h-full object-cover rounded-lg " alt="">
+                </div>
+                <div class="slide p-3! w-1/2 aspect-video  shrink-0  ">
+                  <img src="./public/products/ali-bakhtiari-7ic3yF64FS8-unsplash.jpg"
+                    class=" select-none pointer-events-none w-full h-full object-cover rounded-lg " alt="">
+                </div>
+                <div class="slide p-3! w-1/2 aspect-video  shrink-0  ">
+                  <img src="./public/products/charlesdeluvio-1-nx1QR5dTE-unsplash.jpg"
+                    class=" select-none pointer-events-none w-full h-full object-cover rounded-lg " alt="">
+                </div>
+                <div class="slide p-3! w-1/2 aspect-video  shrink-0  ">
+                  <img src="./public/products/daniel-korpai-hbTKIbuMmBI-unsplash.jpg"
+                    class=" select-none pointer-events-none w-full h-full object-cover rounded-lg " alt="">
+                </div>
+                <div class="slide p-3! w-1/2 aspect-video  shrink-0  ">
+                  <img src="./public/products/david-svihovec-LEtrhrME07g-unsplash.jpg"
+                    class=" select-none pointer-events-none w-full h-full object-cover rounded-lg " alt="">
+                </div>
+
+              </div>
+              <div class="dotsContainer flex justify-center gap-3 mt-3  ">
+
+                <div class="dot h-2 w-2 bg-gray-400 rounded-full cursor-pointer " data-idx="0" ></div>
+                <div class="dot h-2 w-2 bg-gray-400 rounded-full cursor-pointer" data-idx="1"></div>
+                <div class="dot h-2 w-2 bg-gray-400 rounded-full cursor-pointer" data-idx="2"></div>
+                <div class="dot h-2 w-2 bg-gray-400 rounded-full cursor-pointer " data-idx="3"></div>
+                <div class="dot h-2 w-2 bg-gray-400 rounded-full cursor-pointer " data-idx="4"></div>
+              </div>
+            </div>
+
+            <div class="leftArrow absolute top-1/2 -translate-y-1/2 left-0 
+            w-6 h-6 sm:w-8 sm:h-8 group
+            border border-gray-400/85 rounded-full z-10 
+            -translate-x-[80%] sm:-translate-x-[150%] 
+            flex justify-center items-center cursor-pointer ">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-3 sm:size-4 group-hover:size-4 sm:group-hover:size-5 
+         group-hover:-translate-x-0.5 transition duration-75 ease-in-out">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+              </svg>
+            </div>
+
+
+            <div class="rightArrow absolute top-1/2 -translate-y-1/2 right-0 
+            w-6 h-6 sm:w-8 sm:h-8 group
+            border border-gray-400/85 rounded-full z-10 
+            translate-x-[80%] sm:translate-x-[150%] 
+            flex justify-center items-center cursor-pointer ">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-3 sm:size-4 group-hover:size-4 sm:group-hover:size-5 
+         group-hover:translate-x-0.5 transition duration-75 ease-in-out">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </div>
+
+
+          </div>
+
+          <div class="paymentApproatches p-3 grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-4  gap-3 mt-6   ">
+            <div class=" shadow-[0_4px_35px_rgba(0,0,0,0.25)] min-h-24 rounded-md px-3 py-2 flex  items-center gap-4">
+
+                  <div> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check "><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path><path d="m9 12 2 2 4-4"></path></svg>
+                  </div>
+                  <div>
+
+                    <h3 class="text-lg font-semibold" > Secure Payments </h3>
+                    <p class=" line-clamp-2" >For all orders above 1000$</p>
+                  </div>
+               
+            </div>
+            <div class=" shadow-[0_4px_35px_rgba(0,0,0,0.25)] min-h-24 rounded-md px-3 py-2 flex  items-center gap-4">
+
+                  <div>  
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle-plus "><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path><path d="M8 12h8"></path><path d="M12 8v8"></path></svg>
+                  </div>
+                  <div class="" >
+
+                    <h3 class="text-lg font-semibold" >Customer Care </h3>
+                    <p class=" line-clamp-2" >All transactions are secured and encrypted</p>
+                  </div>
+               
+            </div>
+            <div class=" shadow-[0_4px_35px_rgba(0,0,0,0.25)] min-h-24 rounded-md px-3 py-2 flex  items-center gap-4 ">
+
+                  <div>  
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy "><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+                  </div>
+                  <div>
+
+                    <h3 class="text-lg font-semibold" > Best Prices </h3>
+                    <p class=" line-clamp-2" >Get support 24/7 via phone or chat$</p>
+                  </div>
+               
+            </div>
+            <div class=" shadow-[0_4px_35px_rgba(0,0,0,0.25)] min-h-24 rounded-md px-3 py-2 flex  items-center gap-4">
+
+                  <div>  
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck "><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"></path><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path><circle cx="7" cy="18" r="2"></circle><path d="M15 18H9"></path><circle cx="17" cy="18" r="2"></circle></svg>
+                  </div>
+                  <div>
+
+                    <h3 class="text-lg font-semibold " > Free Shipping </h3>
+                    <p class=" line-clamp-2" >We offer the best prices for our products</p>
+                  </div>
+               
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+
+
+
+
+  </section>
+
+
+  <script type="module" src="./dist/main.js"></script>
+  <script type="module" src="./dist/scripts/products.js"></script>
+  <script type="module" src="./dist/scripts/categories.js"></script>
+
+</body>
+
+</html>
