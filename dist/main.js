@@ -1,3 +1,4 @@
+"use strict";
 // src/main.ts
 // Selectors with explicit casting
 const carousel = document.querySelector('.carousel');
@@ -111,12 +112,4 @@ dots.forEach((dot, idx) => {
             `translateX(-${singleSlideWidth * currentIndex}px)`;
     });
 });
-export function renderTemplate(templateId, targetId) {
-    const template = document.getElementById(templateId);
-    const target = document.getElementById(targetId);
-    if (!template || !target)
-        return;
-    const clone = template.content.cloneNode(true);
-    target.appendChild(clone);
-}
 //# sourceMappingURL=main.js.map

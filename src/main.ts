@@ -155,15 +155,3 @@ dots.forEach((dot, idx) => {
 
  
 
-export function renderTemplate(
-  templateId: string,
-  targetId: string
-) {
-  const template = document.getElementById(templateId) as HTMLTemplateElement;
-  const target = document.getElementById(targetId);
-
-  if (!template || !target) return;
-
-  const clone = template.content.cloneNode(true);
-  target.appendChild(clone);
-}

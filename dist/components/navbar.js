@@ -2,7 +2,7 @@
 class AppHeader extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-    <nav class=" pt-3 flex flex-col sm:flex-row sm:justify-between ">
+    <nav class=" flex flex-col sm:flex-row sm:justify-between ">
 
         <div class="logo flex justify-around gap-12 items-center ">
        
@@ -44,6 +44,7 @@ class AppHeader extends HTMLElement {
       </nav>
 
        <div class="navigationCategories hidden sm:flex mt-6  justify-center font-[600] text-[#797474] ">
+        <a href="/index.html" class=" py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl  "> Home </a>
         <div
           class="py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl  group relative flex  sm:justify-center items-center ">
           <span class="mr-1!">categories</span>
@@ -62,18 +63,16 @@ class AppHeader extends HTMLElement {
  
             ">
 
-            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
-            <a href="./src/pages/categories.html" class="bg-white p-2! m-2!"> subCategory </a>
-            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
-            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
-            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href="/src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href="/src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href="/src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href="/src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
           </div>
 
         </div>
         <div class=" py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl  "> categories </div>
         <div class=" py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl  "> categories </div>
         <div class=" py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl  "> categories </div>
-        <div class=" py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl   "> categories </div>
 
       </div>
 
