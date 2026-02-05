@@ -2,220 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="referrer" content="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Products</title>
     <link href="../../src/output.css" rel="stylesheet" />
   </head>
   <body>
-    <!-- <section class=" flex justify-center items-center bg-yellow-500 ">
-     <div class=" products container my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-10">
-      
-   
-      <div class="product  ">
-        <div class="imgProduct">
-          <img
-            src="/public/products/taras-chernus-eSIlQfibAo8-unsplash.jpg"
-            alt=""
-            class="w-full aspect-video rounded-lg "
-          />
-        </div>
-        <div class="contentProduct">
-          <p class="productName text-red-400 bg-blue-700 ">product name</p>
-          <p class="categoryOfProduct">product name</p>
-        </div>
-      </div>
-      <div class="product  ">
-        <div class="imgProduct">
-          <img
-            src="/public/products/taras-chernus-eSIlQfibAo8-unsplash.jpg"
-            alt=""
-            class="w-full aspect-video rounded-lg "
-          />
-        </div>
-        <div class="contentProduct">
-          <p class="productName text-red-400 bg-blue-700 ">product name</p>
-          <p class="categoryOfProduct">product name</p>
-        </div>
-      </div>
-      <div class="product  ">
-        <div class="imgProduct">
-          <img
-            src="/public/products/taras-chernus-eSIlQfibAo8-unsplash.jpg"
-            alt=""
-            class="w-full aspect-video rounded-lg "
-          />
-        </div>
-        <div class="contentProduct">
-          <p class="productName text-red-400 bg-blue-700 ">product name</p>
-          <p class="categoryOfProduct">product name</p>
-        </div>
-      </div>
-      <div class="product  ">
-        <div class="imgProduct">
-          <img
-            src="/public/products/taras-chernus-eSIlQfibAo8-unsplash.jpg"
-            alt=""
-            class="w-full aspect-video rounded-lg "
-          />
-        </div>
-        <div class="contentProduct">
-          <p class="productName text-red-400 bg-blue-700 ">product name</p>
-          <p class="categoryOfProduct">product name</p>
-        </div>
-      </div>
-        </div> 
-    </section> -->
 
-    <main class=" bg-[#EFF1F5] min-h-screen">
+    <main class="bg-[#EFF1F5] min-h-screen flex w-full flex-col items-center space-y-4  ">
       <div class="container mx-auto px-4">
         <app-header></app-header>
-        <h2 class="text-3xl font-semibold text-center mt-8  ">Our Products</h2>
+        <h2 class="text-3xl font-semibold text-center mt-8">Our Products</h2>
 
         <section
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-10 "
-        >
-          <!-- Product Card -->
-          <article
-            class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
-          >
-            <img
-              src="/public//products/taras-chernus-eSIlQfibAo8-unsplash.jpg"
-              alt="Product 1"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-4 flex flex-col flex-grow">
-              <h3 class="text-lg font-semibold mb-2">Product Title 1</h3>
-              <p class="text-sm text-gray-600 flex-grow">
-                This is a short description of the product that highlights its
-                main features.
-              </p>
-              <div class="mt-4 text-indigo-600 font-bold text-xl">$29.99</div>
-            </div>
-          </article>
-
-         
-          <article
-            class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
-          >
-            <img
-              src="/public//products/ruslan-bardash-4kTbAMRAHtQ-unsplash.jpg"
-              alt="Product 2"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-4 flex flex-col flex-grow">
-              <h3 class="text-lg font-semibold mb-2">Product Title 2</h3>
-              <p class="text-sm text-gray-600 flex-grow">
-                This is a short description of the product that highlights its
-                main features.
-              </p>
-              <div class="mt-4 text-indigo-600 font-bold text-xl">$49.99</div>
-            </div>
-          </article>
-
-          <article
-            class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
-          >
-            <img
-              src="/public//products/ryan-waring-164_6wVEHfI-unsplash.jpg"
-              alt="Product 3"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-4 flex flex-col flex-grow">
-              <h3 class="text-lg font-semibold mb-2">Product Title 3</h3>
-              <p class="text-sm text-gray-600 flex-grow">
-                This is a short description of the product that highlights its
-                main features.
-              </p>
-              <div class="mt-4 text-indigo-600 font-bold text-xl">$19.99</div>
-            </div>
-          </article>
-
-          <article
-            class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
-          >
-            <img
-              src="/public//products/sun-lingyan-_H0fjILH5Vw-unsplash.jpg"
-              alt="Product 4"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-4 flex flex-col flex-grow">
-              <h3 class="text-lg font-semibold mb-2">Product Title 4</h3>
-              <p class="text-sm text-gray-600 flex-grow">
-                This is a short description of the product that highlights its
-                main features.
-              </p>
-              <div class="mt-4 text-indigo-600 font-bold text-xl">$99.99</div>
-            </div>
-          </article>
-          <article
-            class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
-          >
-            <img
-              src="/public//products/sun-lingyan-_H0fjILH5Vw-unsplash.jpg"
-              alt="Product 4"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-4 flex flex-col flex-grow">
-              <h3 class="text-lg font-semibold mb-2">Product Title 4</h3>
-              <p class="text-sm text-gray-600 flex-grow">
-                This is a short description of the product that highlights its
-                main features.
-              </p>
-              <div class="mt-4 text-indigo-600 font-bold text-xl">$99.99</div>
-            </div>
-          </article>
-          <article
-            class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
-          >
-            <img
-              src="/public//products/sun-lingyan-_H0fjILH5Vw-unsplash.jpg"
-              alt="Product 4"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-4 flex flex-col flex-grow">
-              <h3 class="text-lg font-semibold mb-2">Product Title 4</h3>
-              <p class="text-sm text-gray-600 flex-grow">
-                This is a short description of the product that highlights its
-                main features.
-              </p>
-              <div class="mt-4 text-indigo-600 font-bold text-xl">$99.99</div>
-            </div>
-          </article>
-          <article
-            class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
-          >
-            <img
-              src="/public//products/sun-lingyan-_H0fjILH5Vw-unsplash.jpg"
-              alt="Product 4"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-4 flex flex-col flex-grow">
-              <h3 class="text-lg font-semibold mb-2">Product Title 4</h3>
-              <p class="text-sm text-gray-600 flex-grow">
-                This is a short description of the product that highlights its
-                main features.
-              </p>
-              <div class="mt-4 text-indigo-600 font-bold text-xl">$99.99</div>
-            </div>
-          </article>
-          <article
-            class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
-          >
-            <img
-              src="/public//products/sun-lingyan-_H0fjILH5Vw-unsplash.jpg"
-              alt="Product 4"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-4 flex flex-col flex-grow">
-              <h3 class="text-lg font-semibold mb-2">Product Title 4</h3>
-              <p class="text-sm text-gray-600 flex-grow">
-                This is a short description of the product that highlights its
-                main features.
-              </p>
-              <div class="mt-4 text-indigo-600 font-bold text-xl">$99.99</div>
-            </div>
-          </article>
-        </section>
+          id="products-wraper"
+          class="mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-16 place-items-center "
+        ></section>
       </div>
     </main>
 
