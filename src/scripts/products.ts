@@ -9,8 +9,8 @@ async function init() {
     try {
     
         console.log('start fetch products');
-        // const products = await getProducts();
-        const products = productsTest
+        const products = await getProducts();
+        // const products = productsTest
     renderProducts(products, container);
   } catch (err) {
     container.innerHTML = "Failed to load products";

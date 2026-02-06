@@ -492,6 +492,18 @@
     --tw-translate-y: calc(var(--spacing) * 2);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .scale-1 {
+    --tw-scale-x: 1%;
+    --tw-scale-y: 1%;
+    --tw-scale-z: 1%;
+    scale: var(--tw-scale-x) var(--tw-scale-y);
+  }
+  .scale-100 {
+    --tw-scale-x: 100%;
+    --tw-scale-y: 100%;
+    --tw-scale-z: 100%;
+    scale: var(--tw-scale-x) var(--tw-scale-y);
+  }
   .scale-y-0 {
     --tw-scale-y: 0%;
     scale: var(--tw-scale-x) var(--tw-scale-y);
@@ -832,6 +844,14 @@
   .duration-300 {
     --tw-duration: 300ms;
     transition-duration: 300ms;
+  }
+  .duration-\[0\.4\] {
+    --tw-duration: 0.4;
+    transition-duration: 0.4;
+  }
+  .duration-\[0\.\] {
+    --tw-duration: 0.;
+    transition-duration: 0.;
   }
   .ease-in-out {
     --tw-ease: var(--ease-in-out);

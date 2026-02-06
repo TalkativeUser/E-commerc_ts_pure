@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { getProductDetails } from "../api/productDetails.js";
 import { productDetails } from "../render/productDetails.js";
 function getProductID() {
     const params = new URLSearchParams(window.location.search);
@@ -14,8 +15,8 @@ function getProductID() {
     return id ? Number(id) : null;
 }
 const container = document.getElementById("product-details");
-const wraperProductImg = document.getElementById('wraper-product-img');
-const productImg = document.getElementById('product-img');
+const wraperProductImg = document.getElementById("wraper-product-img");
+const productImg = document.getElementById("product-img");
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
         if (!container)
@@ -26,48 +27,60 @@ function init() {
             return;
         }
         try {
-            console.log(' render / product dtails init method started');
-            // const product :Product = await getProductDetails(id);
-            const product = staticDetails;
+            console.log(" render / product dtails init method started");
+            const product = yield getProductDetails(id);
             const res = productDetails(product, container);
         }
         catch (_a) {
-            container.innerHTML = "Failed to load product";
+            const product = staticDetails;
+            const res = productDetails(product, container);
+            window.alert('this product is not found , try another product');
         }
     });
 }
 const staticDetails = {
-    "id": 12,
-    "title": "Classic Black Baseball Cap",
-    "slug": "classic-black-baseball-cap",
-    "price": 58,
-    "description": "Elevate your casual wear with this timeless black baseball cap. Made with high-quality, breathable fabric, it features an adjustable strap for the perfect fit. Whether you’re out for a jog or just running errands, this cap adds a touch of style to any outfit.",
-    "category": {
-        "id": 1,
-        "name": "Clothes",
-        "slug": "clothes",
-        "image": "https://i.imgur.com/QkIa5tT.jpeg",
-        "creationAt": "2026-02-05T10:45:12.000Z",
-        "updatedAt": "2026-02-05T10:45:12.000Z"
+    id: 12,
+    title: "fake or temprory product",
+    slug: "fake or temprory product",
+    price: 0,
+    description: "not found this product",
+    category: {
+        id: 0,
+        name: "no category",
+        slug: "no category",
+        image: "https://i.imgur.com/QkIa5tT.jpeg",
+        creationAt: "2026-02-05T10:45:12.000Z",
+        updatedAt: "2026-02-05T10:45:12.000Z",
     },
-    "images": [
+    images: [
         "https://i.imgur.com/KeqG6r4.jpeg",
         "https://i.imgur.com/xGQOw3p.jpeg",
-        "https://i.imgur.com/oO5OUjb.jpeg"
+        "https://i.imgur.com/oO5OUjb.jpeg",
     ],
-    "creationAt": "2026-02-05T10:45:12.000Z",
-    "updatedAt": "2026-02-05T10:45:12.000Z"
+    creationAt: "2026-02-05T10:45:12.000Z",
+    updatedAt: "2026-02-05T10:45:12.000Z",
 };
 init();
-// if (wraperProductImg && productImg) {
-//   wraperProductImg.addEventListener('mousemove', (e) => {
-//     const rect = wraperProductImg.getBoundingClientRect();
-//     // const x = e.clientX - rect.left; // mouse X inside wrapper
-//     // const y = e.clientY - rect.top;  // mouse Y inside wrapper
-//     // console.log('x:', x, 'y:', y);
-//     console.log('boundingClientRect => ' , rect);
-//   });
-// } else {
-//   console.log('wrapper or image is not defined');
-// }
+if (wraperProductImg && productImg) {
+    wraperProductImg.addEventListener("mouseenter", () => {
+        productImg.style.transform = `scale(2)`;
+        productImg.style.transition = "transform 0.4s ease";
+    });
+    wraperProductImg.addEventListener("mousemove", (e) => {
+        const rect = wraperProductImg.getBoundingClientRect();
+        const translatMouseX = e.clientX - rect.left; // mouse X inside wrapper
+        const translatMouseY = e.clientY - rect.top; // mouse Y inside wrapper
+        const xPercent = (translatMouseX / rect.width) * 100;
+        const yPercent = (translatMouseY / rect.height) * 100;
+        productImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+    });
+    wraperProductImg.addEventListener("mouseleave", () => {
+        productImg.style.transform = `scale(1)`;
+        //  السطر ده انا همشته لانه بيخلى سلوك غريب يحصل وهو ان لما بطلع الماوس بره العنصر الصورة لو كان ال origin  بتاعها مثلا 100 بكسل عرض وطول السطر ده بمجرد ما الماوس يطلع بره العنصر بيغير مكان ال  origin  الى المنتصف وبعد كده ال  scale  يصغر وده احساس وحش جدا للمستخدم المفروض ال  origin  ميتغيرش خالص والصورة ترجع لحجمها الطبيعى
+        // productImg.style.transformOrigin = "center center";
+    });
+}
+else {
+    console.log("wrapper or image is not defined");
+}
 //# sourceMappingURL=productDetails.js.map

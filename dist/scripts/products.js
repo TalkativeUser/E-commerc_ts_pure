@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { getProducts } from "../api/products.js";
 import { renderProducts } from "../render/products.js";
 const container = document.getElementById("products-wraper");
 function init() {
@@ -15,8 +16,8 @@ function init() {
             return;
         try {
             console.log('start fetch products');
-            // const products = await getProducts();
-            const products = productsTest;
+            const products = yield getProducts();
+            // const products = productsTest
             renderProducts(products, container);
         }
         catch (err) {
