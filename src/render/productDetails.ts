@@ -1,10 +1,7 @@
 import { Product } from "../types";
 
- 
-  export function productDetails(product:Product , container:HTMLElement) {
-
-
-    container.innerHTML= `
+export function productDetails(product: Product, container: HTMLElement) {
+  container.innerHTML = `
    
         <div
           class=" w-full  px-2 sm:px-6 lg:px-10 flex justify-center items-start"
@@ -15,7 +12,7 @@ import { Product } from "../types";
             <img
               src="${product.images[0]}"
               alt="${product.title}"
-              id="${product.id}"
+              id="product-img"
               class="w-full max-w-md lg:max-w-full aspect-square object-cover rounded-xl "
             />
           </div>
@@ -61,7 +58,13 @@ import { Product } from "../types";
                 <span>Wishlist</span>
               </button>
             </div>
-            <button class="share bg-[#C7BAD9] px-3 rounded-lg">sh</button>
+            <button class="share bg-[#C7BAD9] px-3 rounded-lg">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+            </svg>
+
+            </button>
           </div>
           <h1 class="text-5xl font-bold text-[#4b4e68] mt-3 " >${product.title}</h1>
           <h2 class="font-semibold text-2xl text-[#4b4e68]" >$${product.price}</h2>
@@ -70,5 +73,46 @@ import { Product } from "../types";
           <p class="text-lg font-normal text-[#4b4e68]" > ${product.description} </p>
         </div>
        
-       `
- }
+       `;
+
+         const wraperProductImg: HTMLElement | null =
+  document.getElementById("wraper-product-img");
+const productImg: HTMLElement | null = document.getElementById("product-img");
+
+
+if (wraperProductImg && productImg) {
+  
+  wraperProductImg.addEventListener("mouseenter", () => {
+    
+    
+    productImg.style.transform = `scale(2)`;
+    productImg.style.transition = "transform 0.4s ease";
+  });
+
+  wraperProductImg.addEventListener("mousemove", (e) => {
+    const rect = wraperProductImg.getBoundingClientRect();
+    
+
+    const translatMouseX = e.clientX - rect.left; // mouse X inside wrapper
+    const translatMouseY = e.clientY - rect.top; // mouse Y inside wrapper
+
+    const xPercent = (translatMouseX / rect.width) * 100;
+    const yPercent = (translatMouseY / rect.height) * 100;
+
+    productImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+  });
+
+  wraperProductImg.addEventListener("mouseleave", () => {
+    productImg.style.transform = `scale(1)`;
+    //  السطر ده انا همشته لانه بيخلى سلوك غريب يحصل وهو ان لما بطلع الماوس بره العنصر الصورة لو كان ال origin  بتاعها مثلا 100 بكسل عرض وطول السطر ده بمجرد ما الماوس يطلع بره العنصر بيغير مكان ال  origin  الى المنتصف وبعد كده ال  scale  يصغر وده احساس وحش جدا للمستخدم المفروض ال  origin  ميتغيرش خالص والصورة ترجع لحجمها الطبيعى
+    // productImg.style.transformOrigin = "center center";
+        
+
+  });
+} else {
+    
+  console.log('wraper and image is not found => ' , wraperProductImg , productImg);
+  
+
+}
+}
