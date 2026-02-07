@@ -28,7 +28,7 @@ export function productDetails(product, container, isFaildProduct) {
             <div
               class="wishAndCartBtn bg-[#DDDFE4] py-2 px-2 rounded-lg flex gap-4 max-w-sm justify-between "
             >
-              <button class="px-2 flex gap-2">
+              <button id="add-to-cart" class="px-2 flex gap-2 cursor-pointer ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -46,7 +46,7 @@ export function productDetails(product, container, isFaildProduct) {
                 <span>Add to cart</span>
               </button>
               <hr class="w-px h-full bg-gray-400 border-0" >
-              <button class="px-2 flex gap-2">
+              <button id="add-to-wish" class="px-2 flex gap-2 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -84,6 +84,8 @@ export function productDetails(product, container, isFaildProduct) {
        `;
     const wraperProductImg = document.getElementById("wraper-product-img");
     const productImg = document.getElementById("product-img");
+    const btnAddToCart = document.getElementById('add-to-cart');
+    const btnAddToWish = document.getElementById('add-to-wish');
     if (wraperProductImg && productImg) {
         wraperProductImg.addEventListener("mouseenter", () => {
             productImg.style.transform = `scale(2)`;
@@ -104,7 +106,17 @@ export function productDetails(product, container, isFaildProduct) {
         });
     }
     else {
-        console.log('wraper and image is not found => ', wraperProductImg, productImg);
+        console.log("wraper and image is not found => ", wraperProductImg, productImg);
     }
+    if (btnAddToCart && btnAddToWish) {
+        btnAddToCart.addEventListener("click", () => {
+            console.log('should increment cart counter ');
+        });
+        btnAddToWish.addEventListener("click", () => {
+            console.log('should increment wish counter ');
+        });
+    }
+    else
+        window.alert('cart btn and wish btn are null');
 }
 //# sourceMappingURL=productDetails.js.map

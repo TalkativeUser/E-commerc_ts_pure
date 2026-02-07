@@ -112,4 +112,12 @@ dots.forEach((dot, idx) => {
             `translateX(-${singleSlideWidth * currentIndex}px)`;
     });
 });
+const state = document.querySelector("app-state");
+// قراءة
+if (state) {
+    console.log(state.dataset.step);
+    // كتابة
+    state.dataset.step = "3";
+    state.dataset.container = "modal";
+}
 //# sourceMappingURL=main.js.map

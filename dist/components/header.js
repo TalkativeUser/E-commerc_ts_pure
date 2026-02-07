@@ -1,17 +1,7 @@
 "use strict";
 // I use this method because any reusable component contain <img src='' /> or <a href='' > has not static path , 
 // and baseUrl on githup pages it's not like localhost
-const getBaseURL = () => {
-    const hostname = window.location.hostname;
-    const pathname = window.location.pathname;
-    //  GitHub Pages
-    if (hostname.includes('github.io')) {
-        const repoName = pathname.split('/')[1]; // بيجيب اسم المستودع
-        return `/${repoName}/`;
-    }
-    // لو انا على localhost
-    return '/';
-};
+import { getBaseURL } from '../services/index.js';
 class AppHeader extends HTMLElement {
     constructor() {
         super();

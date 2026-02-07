@@ -1,9 +1,13 @@
 import { Product } from "../types";
 
-export function productDetails(product: Product, container: HTMLElement , isFaildProduct:boolean) {
+export function productDetails(
+  product: Product,
+  container: HTMLElement,
+  isFaildProduct: boolean,
+) {
   container.innerHTML = `
 
-    ${isFaildProduct ?`<h2 class="text-xl font-normal text-red-300 text-center mt-8" > Faild to get product details , This is temprory product try again later ❌ </h2>`:""}  
+    ${isFaildProduct ? `<h2 class="text-xl font-normal text-red-300 text-center mt-8" > Faild to get product details , This is temprory product try again later ❌ </h2>` : ""}  
    
  <div
         class="grid grid-cols-1 md:grid-cols-2 mt-8 w-full justify-items-center px-3  "
@@ -30,7 +34,7 @@ export function productDetails(product: Product, container: HTMLElement , isFail
             <div
               class="wishAndCartBtn bg-[#DDDFE4] py-2 px-2 rounded-lg flex gap-4 max-w-sm justify-between "
             >
-              <button class="px-2 flex gap-2">
+              <button id="add-to-cart" class="px-2 flex gap-2 cursor-pointer ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -48,7 +52,7 @@ export function productDetails(product: Product, container: HTMLElement , isFail
                 <span>Add to cart</span>
               </button>
               <hr class="w-px h-full bg-gray-400 border-0" >
-              <button class="px-2 flex gap-2">
+              <button id="add-to-wish" class="px-2 flex gap-2 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -85,44 +89,61 @@ export function productDetails(product: Product, container: HTMLElement , isFail
        
        `;
 
-         const wraperProductImg: HTMLElement | null =
-  document.getElementById("wraper-product-img");
-const productImg: HTMLElement | null = document.getElementById("product-img");
+  const wraperProductImg: HTMLElement | null =
+    document.getElementById("wraper-product-img");
+  const productImg: HTMLElement | null = document.getElementById("product-img");
+  const btnAddToCart=document.getElementById('add-to-cart')
+  const btnAddToWish=document.getElementById('add-to-wish')
+
+  if (wraperProductImg && productImg) {
+    wraperProductImg.addEventListener("mouseenter", () => {
+      productImg.style.transform = `scale(2)`;
+      productImg.style.transition = "transform 0.4s ease";
+    });
+
+    wraperProductImg.addEventListener("mousemove", (e) => {
+      const rect = wraperProductImg.getBoundingClientRect();
+
+      const translatMouseX = e.clientX - rect.left; // mouse X inside wrapper
+      const translatMouseY = e.clientY - rect.top; // mouse Y inside wrapper
+
+      const xPercent = (translatMouseX / rect.width) * 100;
+      const yPercent = (translatMouseY / rect.height) * 100;
+
+      productImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+    });
+
+    wraperProductImg.addEventListener("mouseleave", () => {
+      productImg.style.transform = `scale(1)`;
+      //  السطر ده انا همشته لانه بيخلى سلوك غريب يحصل وهو ان لما بطلع الماوس بره العنصر الصورة لو كان ال origin  بتاعها مثلا 100 بكسل عرض وطول السطر ده بمجرد ما الماوس يطلع بره العنصر بيغير مكان ال  origin  الى المنتصف وبعد كده ال  scale  يصغر وده احساس وحش جدا للمستخدم المفروض ال  origin  ميتغيرش خالص والصورة ترجع لحجمها الطبيعى
+      // productImg.style.transformOrigin = "center center";
+    });
+  } else {
+    console.log(
+      "wraper and image is not found => ",
+      wraperProductImg,
+      productImg,
+    );
+  }
 
 
-if (wraperProductImg && productImg) {
-  
-  wraperProductImg.addEventListener("mouseenter", () => {
+if(btnAddToCart && btnAddToWish) {
+
+  btnAddToCart.addEventListener("click" , ()=>{
+
+    console.log('should increment cart counter ');
     
+  })
+  btnAddToWish.addEventListener("click" , ()=>{
+
+    console.log('should increment wish counter ');
     
-    productImg.style.transform = `scale(2)`;
-    productImg.style.transition = "transform 0.4s ease";
-  });
+  })
 
-  wraperProductImg.addEventListener("mousemove", (e) => {
-    const rect = wraperProductImg.getBoundingClientRect();
-    
+} else window.alert('cart btn and wish btn are null');
 
-    const translatMouseX = e.clientX - rect.left; // mouse X inside wrapper
-    const translatMouseY = e.clientY - rect.top; // mouse Y inside wrapper
 
-    const xPercent = (translatMouseX / rect.width) * 100;
-    const yPercent = (translatMouseY / rect.height) * 100;
-
-    productImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
-  });
-
-  wraperProductImg.addEventListener("mouseleave", () => {
-    productImg.style.transform = `scale(1)`;
-    //  السطر ده انا همشته لانه بيخلى سلوك غريب يحصل وهو ان لما بطلع الماوس بره العنصر الصورة لو كان ال origin  بتاعها مثلا 100 بكسل عرض وطول السطر ده بمجرد ما الماوس يطلع بره العنصر بيغير مكان ال  origin  الى المنتصف وبعد كده ال  scale  يصغر وده احساس وحش جدا للمستخدم المفروض ال  origin  ميتغيرش خالص والصورة ترجع لحجمها الطبيعى
-    // productImg.style.transformOrigin = "center center";
-        
-
-  });
-} else {
-    
-  console.log('wraper and image is not found => ' , wraperProductImg , productImg);
-  
 
 }
-}
+
+

@@ -1,5 +1,7 @@
 import { getProducts } from "../api/products.js";
 import { renderProducts } from "../render/products.js";
+        import { initStateObserver } from "../scripts/core/stateObserver.js";
+
 
 const container = document.getElementById("products-wraper");
 
@@ -1039,3 +1041,5 @@ const productsTest=
 ]
 
 init();
+
+

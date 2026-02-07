@@ -8,16 +8,21 @@
     <link href="../output.css" rel="stylesheet" />
   </head>
   <body>
-
-    <main class="bg-[#EFF1F5] min-h-screen flex w-full flex-col items-center space-y-4  ">
-      <div class="container mx-auto px-4 "  >
+    <main
+      class="bg-[#EFF1F5] min-h-screen flex w-full flex-col items-center space-y-4"
+    >
+      <div class="container mx-auto px-4">
         <app-header></app-header>
+        <app-drawer></app-drawer>
+
+        <app-state></app-state>
         <h2 class="text-3xl font-semibold text-center mt-8">Our Products</h2>
-        <section id="products-wraper" ></section>
+        <section id="products-wraper"></section>
       </div>
     </main>
 
     <script type="module" src="../../dist/components/header.js"></script>
+    <script type="module" src="../../dist/components/drawer.js"></script>
     <script type="module" src="../../dist/scripts/products.js"></script>
   </body>
 </html>

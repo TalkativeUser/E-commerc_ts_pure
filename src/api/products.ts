@@ -1,6 +1,4 @@
 import type { Product } from "../types";
-console.log('api/products started');
-
 const BASE_URL = "https://api.escuelajs.co/api/v1";
 
 export async function getProducts(): Promise<Product[]> {

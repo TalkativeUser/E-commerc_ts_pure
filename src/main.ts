@@ -155,3 +155,14 @@ dots.forEach((dot, idx) => {
 
  
 
+const state:HTMLElement|null = document.querySelector("app-state");
+
+// قراءة
+if(state) {
+  
+  console.log(state.dataset.step);
+  // كتابة
+  state.dataset.step = "3";
+  state.dataset.container = "modal";
+
+}
