@@ -7,7 +7,7 @@ class AppHeader extends HTMLElement {
 
         <div class="logo flex justify-around gap-12 items-center ">
        
-          <img src="/public/logo.svg" class="w-20 h-20" alt="">
+          <img src="./public/logo.svg" class="w-20 h-20" alt="">
 
         </div>
 
@@ -65,11 +65,11 @@ class AppHeader extends HTMLElement {
  
             ">
 
-            <a href="/src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
-            <a href="/src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
-            <a href="/src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
-            <a href="/src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
-            <a href="/src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
           </div>
 
         </div>
