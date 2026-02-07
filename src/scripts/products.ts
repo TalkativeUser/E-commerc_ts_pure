@@ -5,15 +5,20 @@ const container = document.getElementById("products-wraper");
 
 async function init() {
     if (!container) return;
-    
+        let isFaildProducts=true;
+
     try {
     
         console.log('start fetch products');
         const products = await getProducts();
-        // const products = productsTest
-    renderProducts(products, container);
+         isFaildProducts=false
+        renderProducts(products, container ,isFaildProducts);
   } catch (err) {
-    container.innerHTML = "Failed to load products";
+
+         isFaildProducts=true
+      const products = productsTest
+    renderProducts(products, container , isFaildProducts);
+   
   }
 }
 

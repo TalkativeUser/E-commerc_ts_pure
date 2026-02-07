@@ -24,15 +24,17 @@ function init() {
             container.innerHTML = "Invalid product id";
             return;
         }
+        let isFaildProduct;
         try {
             console.log(" render / product dtails init method started");
             const product = yield getProductDetails(id);
-            const res = productDetails(product, container);
+            isFaildProduct = false;
+            productDetails(product, container, isFaildProduct);
         }
         catch (_a) {
+            isFaildProduct = true;
             const product = staticDetails;
-            const res = productDetails(product, container);
-            window.alert('this product is not found , try another product');
+            productDetails(product, container, isFaildProduct);
         }
     });
 }

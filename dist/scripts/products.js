@@ -14,14 +14,17 @@ function init() {
     return __awaiter(this, void 0, void 0, function* () {
         if (!container)
             return;
+        let isFaildProducts = true;
         try {
             console.log('start fetch products');
             const products = yield getProducts();
-            // const products = productsTest
-            renderProducts(products, container);
+            isFaildProducts = false;
+            renderProducts(products, container, isFaildProducts);
         }
         catch (err) {
-            container.innerHTML = "Failed to load products";
+            isFaildProducts = true;
+            const products = productsTest;
+            renderProducts(products, container, isFaildProducts);
         }
     });
 }

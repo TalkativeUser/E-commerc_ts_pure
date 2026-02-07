@@ -1,8 +1,16 @@
 import { Product } from "../types";
 
-export function productDetails(product: Product, container: HTMLElement) {
+export function productDetails(product: Product, container: HTMLElement , isFaildProduct:boolean) {
   container.innerHTML = `
+
+    ${isFaildProduct ?`<h2 class="text-xl font-normal text-red-300 text-center mt-8" > Faild to get product details , This is temprory product try again later ❌ </h2>`:""}  
    
+ <div
+        class="grid grid-cols-1 md:grid-cols-2 mt-8 w-full justify-items-center px-3  "
+      >
+      
+     
+
         <div
           class=" w-full  px-2 sm:px-6 lg:px-10 flex justify-center items-start"
            
@@ -72,6 +80,8 @@ export function productDetails(product: Product, container: HTMLElement) {
           <h3 class="text-xl font-semibold text-[#4b4e68] ">Description</h3>
           <p class="text-lg font-normal text-[#4b4e68]" > ${product.description} </p>
         </div>
+
+         </div>
        
        `;
 

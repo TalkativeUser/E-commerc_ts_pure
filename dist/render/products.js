@@ -1,5 +1,14 @@
-export function renderProducts(products, container) {
-    container.innerHTML = products
+export function renderProducts(products, container, isFaildProducts) {
+    container.innerHTML = `
+
+  
+          ${isFaildProducts ? `<h2 class="text-3xl font-semibold text-center text-red-300 mt-8">Faild to get Products , These temprory products try again later ❌</h2>` : ""}
+
+  <div
+         
+          class="mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-16 place-items-center "
+        >
+        ${products
         .map((p) => ` 
       <a href="/src/pages/productDetails.html?id=${[p.id]}" >
       <div class="group relative flex h-full max-w-75 transform flex-col items-start justify-start space-y-2 rounded-lg " > 
@@ -28,6 +37,9 @@ export function renderProducts(products, container) {
         
 
     `)
-        .join("");
+        .join("")}
+        
+        </div>
+  `;
 }
 //# sourceMappingURL=products.js.map
