@@ -1,12 +1,29 @@
 "use strict";
+// I use this method because any reusable component contain <img src='' /> or <a href='' > has not static path , 
+// and baseUrl on githup pages it's not like localhost
+const getBaseURL = () => {
+    const hostname = window.location.hostname;
+    const pathname = window.location.pathname;
+    //  GitHub Pages
+    if (hostname.includes('github.io')) {
+        const repoName = pathname.split('/')[1]; // بيجيب اسم المستودع
+        return `/${repoName}/`;
+    }
+    // لو انا على localhost
+    return '/';
+};
 class AppHeader extends HTMLElement {
+    constructor() {
+        super();
+        this.baseUrl = getBaseURL();
+    }
     connectedCallback() {
         this.innerHTML = `
     <nav class=" flex flex-col sm:flex-row sm:justify-between ">
 
         <div class="logo flex justify-around gap-12 items-center ">
        
-          <img src="./public/logo.svg" class="w-20 h-20" alt="">
+          <img src="${this.baseUrl}public/logo.svg" class="w-20 h-20" alt="">
 
         </div>
 
@@ -44,7 +61,7 @@ class AppHeader extends HTMLElement {
       </nav>
 
             <div class="navigationCategories hidden sm:flex mt-6  justify-center font-[600] text-[#797474] ">
-                    <a href="/index.html" class=" py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl  "> Home </a>
+                    <a href="${this.baseUrl}index.html" class=" py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl  "> Home </a>
 
         <div
           class="py-3!  px-3! md:px-6! lg:px-7!  text-md md:text-lg  xl:text-xl  group relative flex  sm:justify-center items-center ">
@@ -64,11 +81,11 @@ class AppHeader extends HTMLElement {
  
             ">
 
-            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
-            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
-            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
-            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
-            <a href="./src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href="${this.baseUrl}src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href=".${this.baseUrl}src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href=".${this.baseUrl}src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href=".${this.baseUrl}src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
+            <a href=".${this.baseUrl}src/pages/products.html" class="bg-white p-2! m-2!"> subCategory </a>
           </div>
 
         </div>
