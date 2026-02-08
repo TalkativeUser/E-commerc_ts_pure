@@ -94,6 +94,7 @@ export function productDetails(
   const productImg: HTMLElement | null = document.getElementById("product-img");
   const btnAddToCart=document.getElementById('add-to-cart')
   const btnAddToWish=document.getElementById('add-to-wish')
+ const state:null|HTMLElement= document.querySelector("app-state");
 
   if (wraperProductImg && productImg) {
     wraperProductImg.addEventListener("mouseenter", () => {
@@ -127,11 +128,12 @@ export function productDetails(
   }
 
 
-if(btnAddToCart && btnAddToWish) {
+if(btnAddToCart && btnAddToWish && state) {
 
   btnAddToCart.addEventListener("click" , ()=>{
 
-    console.log('should increment cart counter ');
+      const count = Number(state.dataset.cartCount);
+    state.dataset.cartCount = String(count + 1);
     
   })
   btnAddToWish.addEventListener("click" , ()=>{
@@ -140,7 +142,7 @@ if(btnAddToCart && btnAddToWish) {
     
   })
 
-} else window.alert('cart btn and wish btn are null');
+} else window.alert('cart btn or wish btn or app-state are null');
 
 
 

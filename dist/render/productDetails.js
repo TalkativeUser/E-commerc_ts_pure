@@ -86,6 +86,7 @@ export function productDetails(product, container, isFaildProduct) {
     const productImg = document.getElementById("product-img");
     const btnAddToCart = document.getElementById('add-to-cart');
     const btnAddToWish = document.getElementById('add-to-wish');
+    const state = document.querySelector("app-state");
     if (wraperProductImg && productImg) {
         wraperProductImg.addEventListener("mouseenter", () => {
             productImg.style.transform = `scale(2)`;
@@ -108,15 +109,16 @@ export function productDetails(product, container, isFaildProduct) {
     else {
         console.log("wraper and image is not found => ", wraperProductImg, productImg);
     }
-    if (btnAddToCart && btnAddToWish) {
+    if (btnAddToCart && btnAddToWish && state) {
         btnAddToCart.addEventListener("click", () => {
-            console.log('should increment cart counter ');
+            const count = Number(state.dataset.cartCount);
+            state.dataset.cartCount = String(count + 1);
         });
         btnAddToWish.addEventListener("click", () => {
             console.log('should increment wish counter ');
         });
     }
     else
-        window.alert('cart btn and wish btn are null');
+        window.alert('cart btn or wish btn or app-state are null');
 }
 //# sourceMappingURL=productDetails.js.map

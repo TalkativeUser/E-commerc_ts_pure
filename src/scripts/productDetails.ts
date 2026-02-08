@@ -1,5 +1,9 @@
 import { getProductDetails } from "../api/productDetails.js";
 import { productDetails } from "../render/productDetails.js";
+import '../components/drawer.js'
+import '../components/header.js'
+import './core/stateManager.js'
+
 import { Product } from "../types";
 
 function getProductID() {
