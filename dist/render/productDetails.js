@@ -28,7 +28,7 @@ export function productDetails(product, container, isFaildProduct) {
             <div
               class="wishAndCartBtn bg-[#DDDFE4] py-2 px-2 rounded-lg flex gap-4 max-w-sm justify-between "
             >
-              <button id="add-to-cart" class="px-2 flex gap-2 cursor-pointer ">
+              <button id="add-to-cart" class="px-2 flex gap-2 cursor-pointer " >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -111,11 +111,24 @@ export function productDetails(product, container, isFaildProduct) {
     }
     if (btnAddToCart && btnAddToWish && state) {
         btnAddToCart.addEventListener("click", () => {
-            const count = Number(state.dataset.cartCount);
-            state.dataset.cartCount = String(count + 1);
+            var _a;
+            const cartProducts = JSON.parse((_a = state.dataset.cartProducts) !== null && _a !== void 0 ? _a : "[]");
+            const index = cartProducts.findIndex(p => p.id === product.id);
+            if (index === -1) {
+                const count = Number(state.dataset.cartCount);
+                state.dataset.cartCount = String(count + 1);
+                cartProducts.push(Object.assign(Object.assign({}, product), { quantity: 1 }));
+            }
+            else {
+                cartProducts[index].quantity += 1;
+            }
+            state.dataset.cartProducts = JSON.stringify(cartProducts);
+            // المفروض هنا اخد الارى واحطها فى اللوكال ستورج لكن الخطوه دى ال observer  اللى محطوط فى ال 
+            //  stateManager  هو اصلا بيراقب اى تغيير فى ال  app-state attr  بيروح تلقائى يخزن كل ال dataset  بتاعت ال app-state
         });
         btnAddToWish.addEventListener("click", () => {
-            console.log('should increment wish counter ');
+            const count = Number(state.dataset.wishCount);
+            state.dataset.wishCount = String(count + 1);
         });
     }
     else

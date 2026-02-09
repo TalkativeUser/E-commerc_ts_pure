@@ -9,4 +9,8 @@ export const getBaseURL = () => {
     // لو انا على localhost
     return '/';
 };
+export function saveState(stateElement) {
+    const data = Object.assign({}, stateElement.dataset); // clone
+    localStorage.setItem("appState", JSON.stringify(data));
+}
 //# sourceMappingURL=index.js.map

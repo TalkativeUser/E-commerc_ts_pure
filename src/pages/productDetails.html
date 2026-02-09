@@ -6,11 +6,11 @@
     <title>Product Details</title>
     <link rel="stylesheet" href="../output.css" />
   </head>
-  <body style="font-family:'Rubik' , system-ui , sans-serif ;" class="bg-[#EFF1F5]">
+  <body >
     <main class="min-h-screen container mx-auto mt-5">
       <app-header></app-header>
       <app-drawer></app-drawer>
-      <app-state data-cart-count="0"></app-state>
+      <app-state data-cart-count="0" data-wish-count="0" data-cart-products="[]" ></app-state>
 
       <div
         id="product-details"
@@ -23,3 +23,6 @@
     <script type="module" src="../../dist/scripts/productDetails.js"></script>
   </body>
 </html>
+
+<!--  الخطوه الجاية هنعرض كل المنتجات فى السلة وهنظبط الخطوه بتاعة الكمية فى السعر وحذف منتج من السلة او حذف كل المنتجات ونعتمد على
+  ال  cartProducts.lenth not cartCount -->

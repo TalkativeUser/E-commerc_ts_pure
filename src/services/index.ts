@@ -11,3 +11,9 @@ export const getBaseURL = () => {
     // لو انا على localhost
     return '/';
 };
+
+
+export function saveState(stateElement: HTMLElement) {
+  const data = { ...stateElement.dataset }; // clone
+  localStorage.setItem("appState", JSON.stringify(data));
+}
