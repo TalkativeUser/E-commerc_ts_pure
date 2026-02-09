@@ -7,10 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const BASE_URL = "https://api.escuelajs.co/api/v1";
+import { BASE_URL_API } from "../services/index.js";
 export function getProductDetails(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        const res = yield fetch(`${BASE_URL}/products/${id}`);
+        const res = yield fetch(`${BASE_URL_API}/products/${id}`);
         if (!res.ok) {
             throw new Error("Product not found");
         }

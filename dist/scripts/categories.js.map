@@ -1,1 +1,1 @@
-{"version":3,"file":"categories.js","sourceRoot":"","sources":["../../src/scripts/categories.ts"],"names":[],"mappings":"AAAA,IAAI,GAAG,GAAS,EAAE,CAAA;AAClB,OAAO,CAAC,GAAG,CAAC,yBAAyB,EAAG,GAAG,CAAC,CAAC"}
+{"version":3,"file":"categories.js","sourceRoot":"","sources":["../../src/scripts/categories.ts"],"names":[],"mappings":";AACA,SAAS,IAAI;IAET,MAAM,SAAS,GAAC,QAAQ,CAAC,cAAc,CAAC,YAAY,CAAC,CAAA;AAGzD,CAAC"}

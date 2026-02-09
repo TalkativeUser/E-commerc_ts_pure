@@ -8,13 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { BASE_URL_API } from "../services/index.js";
-export function getProducts() {
+export function getCategories() {
     return __awaiter(this, void 0, void 0, function* () {
-        const res = yield fetch(`${BASE_URL_API}/products`);
+        const res = yield fetch(`${BASE_URL_API}/categories`);
         if (!res.ok) {
-            throw new Error("Failed to fetch products");
+            throw new Error("Failed to fetch categories");
         }
         return res.json();
     });
 }
-//# sourceMappingURL=products.js.map
+//# sourceMappingURL=categories.js.map

@@ -1,3 +1,5 @@
+export const BASE_URL_API = "https://api.escuelajs.co/api/v1";
+
 export const getBaseURL = () => {
     const hostname = window.location.hostname;
     const pathname = window.location.pathname;
@@ -12,8 +14,7 @@ export const getBaseURL = () => {
     return '/';
 };
 
-
 export function saveState(stateElement: HTMLElement) {
-  const data = { ...stateElement.dataset }; // clone
+  const data = { ...stateElement.dataset }; 
   localStorage.setItem("appState", JSON.stringify(data));
 }

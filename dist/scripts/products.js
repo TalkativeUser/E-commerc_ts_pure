@@ -9,6 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { getProducts } from "../api/products.js";
 import { renderProducts } from "../render/products.js";
+import '../components/categoriesBar.js';
+import '../components/header.js';
+import '../components/drawer.js';
+import '../scripts/core/stateManager.js';
 const container = document.getElementById("products-wraper");
 function init() {
     return __awaiter(this, void 0, void 0, function* () {

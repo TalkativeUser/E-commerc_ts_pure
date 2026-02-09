@@ -1,6 +1,9 @@
 import { getProducts } from "../api/products.js";
 import { renderProducts } from "../render/products.js";
-
+import '../components/categoriesBar.js'
+import '../components/header.js'
+import '../components/drawer.js'
+import '../scripts/core/stateManager.js'
 
 const container = document.getElementById("products-wraper");
 

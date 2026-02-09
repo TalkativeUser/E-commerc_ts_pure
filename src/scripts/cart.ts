@@ -3,7 +3,7 @@ import '../components/header.js'
 import { renderCartProducts } from '../render/cart.js';
 import { cartProduct } from '../render/productDetails.js';
 import './core/stateManager.js'
-
+import '../components/categoriesBar.js'
 const  state:HTMLElement|null =document.querySelector("app-state");
 if(state?.dataset) 
 {

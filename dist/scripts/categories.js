@@ -1,4 +1,5 @@
-let age = 55;
-console.log('my age in categories =>', age);
-export {};
+"use strict";
+function init() {
+    const container = document.getElementById('categories');
+}
 //# sourceMappingURL=categories.js.map

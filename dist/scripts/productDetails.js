@@ -11,6 +11,7 @@ import { getProductDetails } from "../api/productDetails.js";
 import { productDetails } from "../render/productDetails.js";
 import '../components/drawer.js';
 import '../components/header.js';
+import '../components/categoriesBar.js';
 import './core/stateManager.js';
 function getProductID() {
     const params = new URLSearchParams(window.location.search);
