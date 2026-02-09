@@ -1,4 +1,6 @@
+import { getBaseURL } from "../services/index";
 export function renderProducts(products, container, isFaildProducts) {
+    const baseUrl = getBaseURL();
     container.innerHTML = `
 
   
@@ -10,7 +12,7 @@ export function renderProducts(products, container, isFaildProducts) {
         >
         ${products
         .map((p) => ` 
-      <a href="/src/pages/productDetails.html?id=${[p.id]}" >
+      <a href="${baseUrl}/src/pages/productDetails.html?id=${[p.id]}" >
       <div class="group relative flex h-full max-w-75 transform flex-col items-start justify-start space-y-2 rounded-lg " > 
               <div class="h-60 w-full overflow-hidden rounded-lg shadow-xl" >
                     <img
