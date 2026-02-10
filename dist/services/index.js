@@ -1,4 +1,4 @@
-export const BASE_URL_API = "https://api.escuelajs.co/api/v1";
+export const BASE_URL_API = "https://dummyjson.com";
 export const getBaseURL = () => {
     const hostname = window.location.hostname;
     const pathname = window.location.pathname;

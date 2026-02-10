@@ -14,7 +14,8 @@ async function init() {
     try {
     
         console.log('start fetch products');
-        const products = await getProducts();
+        const data = await getProducts();
+        const products=data.products
          isFaildProducts=false
         renderProducts(products, container ,isFaildProducts);
   } catch (err) {

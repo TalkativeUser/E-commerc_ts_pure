@@ -21,7 +21,8 @@ function init() {
         let isFaildProducts = true;
         try {
             console.log('start fetch products');
-            const products = yield getProducts();
+            const data = yield getProducts();
+            const products = data.products;
             isFaildProducts = false;
             renderProducts(products, container, isFaildProducts);
         }
