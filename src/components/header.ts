@@ -119,9 +119,9 @@ class AppHeader extends HTMLElement {
             </span>
 
           </a>
-          <button class="border rounded-md " style="padding-inline: 20px; padding-block: 5px; ">
+          <a href="${this.baseUrl}src/pages/login.html" class="border rounded-md " style="padding-inline: 20px; padding-block: 5px; ">
             sign in
-          </button>
+          </a>
         </div>
       </nav>
 
