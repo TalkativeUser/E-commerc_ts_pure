@@ -1,6 +1,10 @@
-"use strict";
 // src/main.ts
-// Selectors with explicit casting
+import './components/header.js';
+import './components/drawer.js';
+import './components/categoriesBar.js';
+import './components/wraperPages.js';
+import './scripts/core/stateManager.js';
+// Selectors 
 const carousel = document.querySelector('.carousel');
 const innerCarousel = document.querySelector(".innerCarousel");
 const slides = document.querySelectorAll('.slide');

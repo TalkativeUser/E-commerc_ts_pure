@@ -1,3 +1,4 @@
+import { appState } from '../scripts/core/stateManager.js';
 export function productDetails(product, container, isFaildProduct) {
     container.innerHTML = `
 
@@ -86,7 +87,6 @@ export function productDetails(product, container, isFaildProduct) {
     const productImg = document.getElementById("product-img");
     const btnAddToCart = document.getElementById('add-to-cart');
     const btnAddToWish = document.getElementById('add-to-wish');
-    const state = document.querySelector("app-state");
     if (wraperProductImg && productImg) {
         wraperProductImg.addEventListener("mouseenter", () => {
             productImg.style.transform = `scale(2)`;
@@ -109,26 +109,25 @@ export function productDetails(product, container, isFaildProduct) {
     else {
         console.log("wraper and image is not found => ", wraperProductImg, productImg);
     }
-    if (btnAddToCart && btnAddToWish && state) {
+    if (btnAddToCart && btnAddToWish && appState) {
         btnAddToCart.addEventListener("click", () => {
-            var _a;
-            const cartProducts = JSON.parse((_a = state.dataset.cartProducts) !== null && _a !== void 0 ? _a : "[]");
+            const state = appState.getState();
+            const cartProducts = [...state.cartProducts];
             const index = cartProducts.findIndex(p => p.id === product.id);
             if (index === -1) {
-                const count = Number(state.dataset.cartCount);
-                state.dataset.cartCount = String(count + 1);
                 cartProducts.push(Object.assign(Object.assign({}, product), { quantity: 1 }));
             }
             else {
-                cartProducts[index].quantity += 1;
+                cartProducts[index] = Object.assign(Object.assign({}, cartProducts[index]), { quantity: cartProducts[index].quantity + 1 });
             }
-            state.dataset.cartProducts = JSON.stringify(cartProducts);
-            // المفروض هنا اخد الارى واحطها فى اللوكال ستورج لكن الخطوه دى ال observer  اللى محطوط فى ال 
-            //  stateManager  هو اصلا بيراقب اى تغيير فى ال  app-state attr  بيروح تلقائى يخزن كل ال dataset  بتاعت ال app-state
+            console.log({ cartProducts: cartProducts, cartCount: cartProducts.length });
+            appState.setState({ cartProducts: cartProducts, cartCount: cartProducts.length });
         });
         btnAddToWish.addEventListener("click", () => {
-            const count = Number(state.dataset.wishCount);
-            state.dataset.wishCount = String(count + 1);
+            const state = appState.getState();
+            appState.setState({
+                wishCount: state.wishCount + 1
+            });
         });
     }
     else

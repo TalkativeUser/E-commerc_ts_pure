@@ -1,6 +1,6 @@
 type ToastType = "error" | "success";
 
-export function showToast(message: string, type: ToastType = "error") {
+export function showToast(message: string, type: ToastType = "error" , duration:number) {
   let container = document.getElementById("toast-container");
 
   // create container once
@@ -30,7 +30,7 @@ export function showToast(message: string, type: ToastType = "error") {
   // auto remove
   setTimeout(() => {
     toast.classList.add("animate-slide-out");
-    setTimeout(() => toast.remove(), 300);
+    setTimeout(() => toast.remove(), duration);
   }, 3000);
 }
 

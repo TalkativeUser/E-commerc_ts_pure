@@ -1,24 +1,38 @@
-//  ده احنا عاملينة عنصر فاضى كده وبنستخدمه فى ال  html  ونحطله ال  attributs  اللى محتاجينها وناخدها منه فى المكان 
-import { saveState } from "../../services/index.js";
-//  اللى احنا عاوزوينة وخلاص دى مهمتها احنا عاملينا زى نظام سير شنط المطارات نحط فيه الشنطه اللى محتاجينها وناخدها فى المكان المناسب
-class StateManager extends HTMLElement {
+let initialState = {
+    cartCount: 0,
+    wishCount: 0,
+    cartProducts: [],
+    currentUser: null
+};
+export class StateManager extends HTMLElement {
+    constructor() {
+        super(...arguments);
+        this.listeners = [];
+        this.state = initialState;
+    }
     connectedCallback() {
-        // hydrate
         const saved = localStorage.getItem("appState");
         if (saved) {
-            Object.assign(this.dataset, JSON.parse(saved));
+            this.state = JSON.parse(saved);
         }
-        // observe
-        const observer = new MutationObserver(() => {
-            saveState(this);
-        });
-        observer.observe(this, {
-            attributes: true,
-        });
+    }
+    setState(newState) {
+        this.state = Object.assign(Object.assign({}, this.state), newState);
+        localStorage.setItem("appState", JSON.stringify(this.state));
+        this.notify();
+    }
+    getState() {
+        return Object.assign({}, this.state);
+    }
+    subscribe(listener) {
+        this.listeners.push(listener);
+    }
+    notify() {
+        this.listeners.forEach(listener => listener(this.state));
     }
 }
-console.log('hello world state manager');
 customElements.define("app-state", StateManager);
+export const appState = document.querySelector("app-state");
 //  الطريقة المتهمشه دى هى عبارة عن ال  observer pattern only , not observer web api 
 //   هى افضل من اللى انا بستخدمها لان ال scale  بتاعها اكبر واوسع ولكنها هتعوز تتربط كويس مع ال  web component  لانها بالوضع 
 //  ده مخصصة لل single page not multi pages  ممكن نبقا نستخدمها فى تجربة اخرى

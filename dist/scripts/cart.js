@@ -1,12 +1,13 @@
 var _a;
 import '../components/drawer.js';
 import '../components/header.js';
-import { renderCartProducts } from '../render/cart.js';
-import './core/stateManager.js';
 import '../components/categoriesBar.js';
-const state = document.querySelector("app-state");
-if (state === null || state === void 0 ? void 0 : state.dataset) {
-    const products = JSON.parse((_a = state.dataset.cartProducts) !== null && _a !== void 0 ? _a : "[]");
+import { renderCartProducts } from '../render/cart.js';
+import { appState } from './core/stateManager.js';
+import './core/stateManager.js';
+import '../components/wraperPages.js';
+if (appState.state) {
+    const products = (_a = appState.state.cartProducts) !== null && _a !== void 0 ? _a : "[]";
     renderCartProducts(products);
 }
 //# sourceMappingURL=cart.js.map

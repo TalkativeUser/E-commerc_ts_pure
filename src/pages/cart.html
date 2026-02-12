@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
-    <link rel="stylesheet" href="../output.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+  <link rel="stylesheet" href="../output.css">
 </head>
+
 <body>
+
+
+  <wraper-pages>
+
     <app-header></app-header>
     <app-categories></app-categories>
     <app-drawer></app-drawer>
     <app-state></app-state>
- 
-    <main class="min-h-screen">
-  <div class="container mx-auto px-4 py-10">
     <h1 class="text-3xl font-semibold text-gray-800 mb-8">
       Your Cart
     </h1>
@@ -21,12 +24,11 @@
     <div id="cart-products" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
     </div>
-  </div>
-</main>
+  </wraper-pages>
 
 
-  
-    
-    <script type="module" src="../../dist/scripts/cart.js" ></script>
+
+  <script type="module" src="../../dist/scripts/cart.js"></script>
 </body>
+
 </html>

@@ -1,28 +1,28 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Details</title>
-    <link rel="stylesheet" href="../output.css" />
-  </head>
-  <body >
-    <main class="min-h-screen container mx-auto mt-5">
-      <app-header></app-header>
-      <app-categories></app-categories>
-      <app-drawer></app-drawer>
-      <app-state data-cart-count="0" data-wish-count="0" data-cart-products="[]" ></app-state>
 
-      <div
-        id="product-details"
-      >
-      
-      </div>
-    </main>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details</title>
+  <link rel="stylesheet" href="../output.css" />
+</head>
+
+<body>
+  <wraper-pages>
+    <app-header></app-header>
+    <app-categories></app-categories>
+    <app-drawer></app-drawer>
+    <app-state></app-state>
+
+    <div id="product-details"> </div>
+
+  </wraper-pages>
 
 
-    <script type="module" src="../../dist/scripts/productDetails.js"></script>
-  </body>
+  <script type="module" src="../../dist/scripts/productDetails.js"></script>
+</body>
+
 </html>
 
 <!--  الخطوه الجاية هنعرض كل المنتجات فى السلة وهنظبط الخطوه بتاعة الكمية فى السعر وحذف منتج من السلة او حذف كل المنتجات ونعتمد على

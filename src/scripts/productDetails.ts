@@ -3,9 +3,10 @@ import { productDetails } from "../render/productDetails.js";
 import '../components/drawer.js'
 import '../components/header.js'
 import '../components/categoriesBar.js'
+import '../components/wraperPages.js'
 import './core/stateManager.js'
 
-import { Product } from "../types";
+import { IProduct } from "../types";
 
 function getProductID() {
   const params = new URLSearchParams(window.location.search);
@@ -26,22 +27,15 @@ async function init() {
 let isFaildProduct;
   try {
     console.log(" render / product dtails init method started");
-    const product :Product = await getProductDetails(id);
+    const product :IProduct = await getProductDetails(id);
     isFaildProduct=false;
     productDetails(product, container , isFaildProduct);
 
   } catch {
     isFaildProduct=true
-    const product: Product = staticDetails;
+    const product: IProduct = staticDetails;
     productDetails(product, container , isFaildProduct);
   }
-
-
-
-
-
-
-
 
 }
 

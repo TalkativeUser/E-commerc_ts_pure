@@ -9,8 +9,15 @@
 </head>
 
 <body>
-    <app-state data-new-user="{}" ></app-state>
-    <section class="min-h-screen flex items-center justify-center p-4">
+      <wraper-pages>
+
+
+            <app-header></app-header>
+            <app-categories></app-categories>
+            <app-drawer></app-drawer>
+            <app-state></app-state>
+
+    <section class=" flex items-center justify-center mt-5 p-4">
         <div class="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8">
 
             <!-- Title -->
@@ -61,6 +68,10 @@
 
         </div>
     </section>
+
+      </wraper-pages>
+<script type="module" src="../../dist/scripts/signUp.js" ></script>
+
 </body>
 
 </html>

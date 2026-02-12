@@ -1,5 +1,5 @@
 "use strict";
-// base url helper
+import { appState } from "../scripts/core/stateManager.js";
 import { getBaseURL } from "../services/index.js";
 class AppHeader extends HTMLElement {
     constructor() {
@@ -10,45 +10,36 @@ class AppHeader extends HTMLElement {
     }
     connectedCallback() {
         this.renderHeader();
-        // 🔹 get global state
-        this.state = document.querySelector("app-state"); // كده مسكنا العنصر اللى بيتم التغيير فيه 
-        if (!this.state)
+        if (!appState) {
             return;
-        // 🔹 observe state changes
-        this.observer = new MutationObserver(() => {
-            //  اقب هينفذ الحدث اللى جواه  فى حالة ان العنصر المتراقب حصل فيه تغيير
-            this.updateFromState();
+        }
+        console.log('app state ', appState);
+        // الفانكشن دى بتشتغل لما بيحصل setState then call notify and call all listeners 
+        // الفانكشن المبعوتة دى هى هى ال listener  اللى بيشتغل فى ال app state 
+        appState.subscribe((state) => {
+            this.updateFromState(state);
         });
-        //   هنا بنقول للمراقب اللى انشأته اللى هو  this.observer  شغل ال observ  اللى جواك وراقب ال app-state  اللى هو ماسكينه 
-        // بال  this.state  وتجديدا ال atrributes  اللى جواه لو حصل اى تغيير فيهم اتفضل شغل الحدث اللى جواك اللى هو ال this.UpdateformState
-        this.observer.observe(this.state, {
-            attributes: true,
-        });
-        // 🔹 first render from state
-        this.updateFromState();
-    }
-    disconnectedCallback() {
-        var _a;
-        (_a = this.observer) === null || _a === void 0 ? void 0 : _a.disconnect();
+        this.updateFromState(appState.getState());
     }
     /* ======================
-       UPDATE UI FROM STATE
-    ====================== */
+         UPDATE UI FROM STATE
+      ====================== */
     // الفانكشن دى مهمتها انا بتعدل ال content  فقط فى ال  ui  لان هو بالفعل اتعدل اصلا فى ال event  بتاع ال  addToCart  ولكن احنا هنا 
     //  بنعدله فى ال  ui  فقط 
-    updateFromState() {
+    updateFromState(state) {
         var _a, _b;
-        if (!this.state)
+        if (!state)
             return;
-        const cartCount = (_a = this.state.dataset.cartCount) !== null && _a !== void 0 ? _a : "0";
-        const wishCount = (_b = this.state.dataset.wishCount) !== null && _b !== void 0 ? _b : "0";
+        console.log('state =>', state);
+        const cartCount = (_a = state.cartCount) !== null && _a !== void 0 ? _a : 0;
+        const wishCount = (_b = state.wishCount) !== null && _b !== void 0 ? _b : 0;
         const cartCounterEl = this.querySelector("#cart-counter");
         const wishCounterEl = this.querySelector("#wish-counter");
         if (cartCounterEl) {
-            cartCounterEl.textContent = cartCount;
+            cartCounterEl.textContent = String(cartCount);
         }
         if (wishCounterEl) {
-            wishCounterEl.textContent = wishCount;
+            wishCounterEl.textContent = String(wishCount);
         }
     }
     /* ======================

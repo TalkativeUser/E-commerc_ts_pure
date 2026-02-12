@@ -1,7 +1,11 @@
 // src/main.ts
+import './components/header.js'
+import './components/drawer.js'
+import './components/categoriesBar.js'
+import './components/wraperPages.js'
+import './scripts/core/stateManager.js'
 
-
-// Selectors with explicit casting
+// Selectors 
 const carousel = document.querySelector('.carousel') as HTMLDivElement | null;
 const innerCarousel = document.querySelector(".innerCarousel") as HTMLDivElement | null;
 const slides = document.querySelectorAll('.slide') as NodeListOf<HTMLDivElement>;

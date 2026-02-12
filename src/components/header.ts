@@ -1,8 +1,9 @@
 "use strict";
 
-// base url helper
+import { StateManager } from "../scripts/core/stateManager.js";
+import { appState } from "../scripts/core/stateManager.js";
 import { getBaseURL } from "../services/index.js";
-
+import { IAppState } from "../types.js";
 class AppHeader extends HTMLElement {
   private baseUrl: string;
   private state: HTMLElement | null = null;
@@ -14,52 +15,48 @@ class AppHeader extends HTMLElement {
   }
 
   connectedCallback() {
-    this.renderHeader();
+  this.renderHeader();
 
-    // 🔹 get global state
-    this.state = document.querySelector("app-state"); // كده مسكنا العنصر اللى بيتم التغيير فيه 
-    if (!this.state) return;
+ 
 
-    // 🔹 observe state changes
-    this.observer = new MutationObserver(() => {   // الخاصية اللى اسمها observer  اللى انا انشأتها هتشيل اوبجيكت عبارة عن مر
-      //  اقب هينفذ الحدث اللى جواه  فى حالة ان العنصر المتراقب حصل فيه تغيير
-      this.updateFromState();
-    });
+  if (!appState) {
 
-    //   هنا بنقول للمراقب اللى انشأته اللى هو  this.observer  شغل ال observ  اللى جواك وراقب ال app-state  اللى هو ماسكينه 
-    // بال  this.state  وتجديدا ال atrributes  اللى جواه لو حصل اى تغيير فيهم اتفضل شغل الحدث اللى جواك اللى هو ال this.UpdateformState
-    this.observer.observe(this.state, {
-      attributes: true,
-    });
+    
+    return;
+    
+  } 
+  console.log('app state ',appState);
 
-    // 🔹 first render from state
-    this.updateFromState();
-  }
+  // الفانكشن دى بتشتغل لما بيحصل setState then call notify and call all listeners 
+  // الفانكشن المبعوتة دى هى هى ال listener  اللى بيشتغل فى ال app state 
+  appState.subscribe((state:IAppState) => {
+    this.updateFromState(state);
+  });
 
-  disconnectedCallback() {
-    this.observer?.disconnect();
-  }
+  this.updateFromState(appState.getState());
+}
 
-  /* ======================
+/* ======================
      UPDATE UI FROM STATE
   ====================== */
 
   // الفانكشن دى مهمتها انا بتعدل ال content  فقط فى ال  ui  لان هو بالفعل اتعدل اصلا فى ال event  بتاع ال  addToCart  ولكن احنا هنا 
   //  بنعدله فى ال  ui  فقط 
-  private updateFromState() {
-    if (!this.state) return;
-
-    const cartCount = this.state.dataset.cartCount ?? "0";
-    const wishCount = this.state.dataset.wishCount  ?? "0";
+  private updateFromState(state:IAppState) {
+    if (!state) return;
+   console.log('state =>' , state);
+   
+    const cartCount = state.cartCount ?? 0;
+    const wishCount = state.wishCount  ?? 0;
     const cartCounterEl = this.querySelector("#cart-counter");
     const wishCounterEl = this.querySelector("#wish-counter");
 
     if (cartCounterEl) {
-      cartCounterEl.textContent = cartCount;
+      cartCounterEl.textContent = String(cartCount);
     }
     
     if (wishCounterEl) {
-      wishCounterEl.textContent = wishCount;
+      wishCounterEl.textContent = String(wishCount);
     }
     
 

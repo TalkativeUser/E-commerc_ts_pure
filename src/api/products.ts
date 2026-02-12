@@ -1,9 +1,9 @@
 import { BASE_URL_API } from "../services/index.js";
-import type { Product } from "../types";
+import type { IProduct } from "../types";
 
 interface ResposneFace {
 
-  products:Product[]
+  products:IProduct[]
 }
 
 export async function getProducts(): Promise<ResposneFace> {

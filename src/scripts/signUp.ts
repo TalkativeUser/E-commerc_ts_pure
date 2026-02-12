@@ -1,10 +1,12 @@
+import '../components/categoriesBar.js'
+import '../components/header.js'
+import '../components/drawer.js'
+import './core/stateManager.js'
+import '../components/wraperPages.js';
+import { IUser } from '../types.js';
+
 const form = document.querySelector<HTMLFormElement>("#signup-form")!
-interface IUser {
-    name:string;
-    email:string;
-    password:string;
-    confirmPassword:string;
-}
+
 form.addEventListener("submit", (e) => {
   e.preventDefault()
 

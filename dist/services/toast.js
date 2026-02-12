@@ -1,4 +1,4 @@
-export function showToast(message, type = "error") {
+export function showToast(message, type = "error", duration) {
     let container = document.getElementById("toast-container");
     // create container once
     if (!container) {
@@ -19,7 +19,7 @@ export function showToast(message, type = "error") {
     // auto remove
     setTimeout(() => {
         toast.classList.add("animate-slide-out");
-        setTimeout(() => toast.remove(), 300);
+        setTimeout(() => toast.remove(), duration);
     }, 3000);
 }
 //# sourceMappingURL=toast.js.map

@@ -1,29 +1,29 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="referrer" content="no-referrer" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Products</title>
-    <link href="../output.css" rel="stylesheet" />
-  </head>
-  <body>
-    <main
-      class="bg-[#EFF1F5] min-h-screen flex w-full flex-col items-center space-y-4"
-    >
-      <div class="container mx-auto px-4">
-        <app-header></app-header>
-        <app-categories></app-categories>
-        <app-drawewr></app-drawewr>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products</title>
+  <link href="../output.css" rel="stylesheet" />
+</head>
+
+<body>
+     <wraper-pages>
+
+    <app-header></app-header>
+    <app-categories></app-categories>
+    <app-drawewr></app-drawewr>
+    <app-state></app-state>
+    <h2 class="text-3xl font-semibold text-center mt-8">Our Products</h2>
+    <section id="products-wraper"></section>
+
+  </wraper-pages>
 
 
-        <app-state></app-state>
-        <h2 class="text-3xl font-semibold text-center mt-8">Our Products</h2>
-        <section id="products-wraper"></section>
-      </div>
-    </main>
 
+  <script type="module" src="../../dist/scripts/products.js"></script>
+</body>
 
-    <script type="module" src="../../dist/scripts/products.js"></script>
-  </body>
 </html>

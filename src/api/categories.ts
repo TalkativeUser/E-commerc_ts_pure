@@ -1,7 +1,7 @@
 import { BASE_URL_API } from "../services/index.js";
-import type { Category } from "../types";
+import type { ICategory } from "../types";
 
-export async function getCategories(): Promise<Category[]> {
+export async function getCategories(): Promise<ICategory[]> {
   const res = await fetch(`${BASE_URL_API}/categories`);
 
   if (!res.ok) {

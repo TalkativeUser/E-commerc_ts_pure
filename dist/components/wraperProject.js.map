@@ -1,0 +1,1 @@
+{"version":3,"file":"wraperProject.js","sourceRoot":"","sources":["../../src/components/wraperProject.ts"],"names":[],"mappings":";AAAA,MAAM,WAAY,SAAQ,WAAW;IACnC,iBAAiB;QACf,MAAM,MAAM,GAAG,IAAI,CAAC,YAAY,CAAC,EAAE,IAAI,EAAE,MAAM,EAAE,CAAC,CAAC;QAEnD,MAAM,CAAC,SAAS,GAAG;;;;;;KAMlB,CAAC;IACJ,CAAC;CACF;AAED,cAAc,CAAC,MAAM,CAAC,cAAc,EAAE,WAAW,CAAC,CAAC"}

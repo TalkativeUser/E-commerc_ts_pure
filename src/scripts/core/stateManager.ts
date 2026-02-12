@@ -1,31 +1,54 @@
-//  ده احنا عاملينة عنصر فاضى كده وبنستخدمه فى ال  html  ونحطله ال  attributs  اللى محتاجينها وناخدها منه فى المكان 
 
-import { saveState } from "../../services/index.js";
+import { IAppState } from "../../types.js";
 
-//  اللى احنا عاوزوينة وخلاص دى مهمتها احنا عاملينا زى نظام سير شنط المطارات نحط فيه الشنطه اللى محتاجينها وناخدها فى المكان المناسب
-class StateManager extends HTMLElement {
+let initialState:IAppState ={
+    cartCount: 0,
+    wishCount: 0,
+    cartProducts: [],
+    currentUser: null
+
+}
+
+export class StateManager extends HTMLElement {
+
+  private listeners: Function[] = [];
+
+  state: IAppState = initialState;
+
   connectedCallback() {
-    // hydrate
     const saved = localStorage.getItem("appState");
     if (saved) {
-      Object.assign(this.dataset, JSON.parse(saved));
+      this.state = JSON.parse(saved);
     }
+  }
 
-    // observe
-    const observer = new MutationObserver(() => {
-      saveState(this);
-    });
+  setState(newState: Partial<IAppState>) {
+    this.state = { ...this.state, ...newState };
 
-    observer.observe(this, {
-      attributes: true,
-      
-    });
+    localStorage.setItem("appState", JSON.stringify(this.state));
+
+    this.notify();
+  }
+
+  getState(): IAppState {
+    return { ...this.state };
+  }
+
+  subscribe(listener: Function) {
+    this.listeners.push(listener);
+  }
+
+  private notify() {
+    this.listeners.forEach(listener => listener(this.state));
   }
 }
 
-console.log('hello world state manager');
 
-customElements.define("app-state", StateManager);
+customElements.define("app-state", StateManager)
+
+
+export const appState =
+  document.querySelector("app-state") as StateManager
 
 
 //  الطريقة المتهمشه دى هى عبارة عن ال  observer pattern only , not observer web api 

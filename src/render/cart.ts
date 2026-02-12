@@ -1,6 +1,6 @@
-import { cartProduct } from "./productDetails";
+import { ICartProduct } from "../types";
 
-export function renderCartProducts(products: cartProduct[]) {
+export function renderCartProducts(products: ICartProduct[]) {
   const container = document.getElementById("cart-products");
   let subTotal:number=0;
   const discount=10;

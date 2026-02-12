@@ -14,7 +14,3 @@ export const getBaseURL = () => {
     return '/';
 };
 
-export function saveState(stateElement: HTMLElement) {
-  const data = { ...stateElement.dataset }; 
-  localStorage.setItem("appState", JSON.stringify(data));
-}

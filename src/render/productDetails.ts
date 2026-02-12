@@ -1,12 +1,9 @@
-import { saveState } from "../services/index";
-import { Product } from "../types";
+import { ICartProduct, IProduct } from "../types";
+import { appState } from '../scripts/core/stateManager.js'
 
-export interface cartProduct extends Product {
-  quantity:number;
-}
 
 export function productDetails(
-  product: Product,
+  product: IProduct,
   container: HTMLElement,
   isFaildProduct: boolean,
 ) {
@@ -97,10 +94,8 @@ export function productDetails(
   const wraperProductImg: HTMLElement | null =
     document.getElementById("wraper-product-img");
   const productImg: HTMLElement | null = document.getElementById("product-img");
-  const btnAddToCart=document.getElementById('add-to-cart')
-  const btnAddToWish=document.getElementById('add-to-wish')
- const state:null|HTMLElement= document.querySelector("app-state");
-
+  const btnAddToCart = document.getElementById('add-to-cart')
+  const btnAddToWish = document.getElementById('add-to-wish')
   if (wraperProductImg && productImg) {
     wraperProductImg.addEventListener("mouseenter", () => {
       productImg.style.transform = `scale(2)`;
@@ -133,41 +128,41 @@ export function productDetails(
   }
 
 
-if(btnAddToCart && btnAddToWish && state) {
+  if (btnAddToCart && btnAddToWish && appState) {
 
-  btnAddToCart.addEventListener("click", () => {
-         
+    btnAddToCart.addEventListener("click", () => {
 
-          const cartProducts: cartProduct[] =
-            JSON.parse(state.dataset.cartProducts ?? "[]");
+  
+      const state = appState.getState();
+      const cartProducts: ICartProduct[] = [...state.cartProducts];
+      const index = cartProducts.findIndex(p => p.id === product.id);
+      if (index === -1) {
 
-          const index = cartProducts.findIndex(p => p.id === product.id);
+        cartProducts.push({ ...product, quantity: 1 });
 
-          if (index === -1) {
-             const count = Number(state.dataset.cartCount);
-             state.dataset.cartCount = String(count + 1);
-            cartProducts.push({ ...product, quantity: 1 });
-          } else {
-            cartProducts[index].quantity += 1;
-          }
+      } else {
+        cartProducts[index] = {
+          ...cartProducts[index],
+          quantity: cartProducts[index].quantity + 1
+        };
+      }
+console.log({ cartProducts: cartProducts, cartCount: cartProducts.length });
 
-          state.dataset.cartProducts = JSON.stringify(cartProducts);
-          // المفروض هنا اخد الارى واحطها فى اللوكال ستورج لكن الخطوه دى ال observer  اللى محطوط فى ال 
-          //  stateManager  هو اصلا بيراقب اى تغيير فى ال  app-state attr  بيروح تلقائى يخزن كل ال dataset  بتاعت ال app-state
-          
+      appState.setState({ cartProducts: cartProducts, cartCount: cartProducts.length })
 
+    });
+
+
+btnAddToWish.addEventListener("click", () => {
+  const state = appState.getState();
+
+  appState.setState({
+    wishCount: state.wishCount + 1
+  });
 });
 
 
-  btnAddToWish.addEventListener("click" , ()=>{
-
-      const count = Number(state.dataset.wishCount);
-    state.dataset.wishCount = String(count + 1);
-    
-    
-  })
-
-} else window.alert('cart btn or wish btn or app-state are null');
+  } else window.alert('cart btn or wish btn or app-state are null');
 
 
 
